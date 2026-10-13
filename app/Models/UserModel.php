@@ -12,7 +12,9 @@ class UserModel extends Model
     protected $useTimestamps = true;   
 
     protected $allowedFields = [
-        'name', 'email', 'password', 'active', 'is_admin',
-        'activation_token', 'reset_token', 'reset_expires', 'avatar',
+    'name', 'email', 'password', 'active', 'is_admin',
+    'activation_token', 'reset_token', 'reset_expires', 'avatar',
+    'remember_token',
     ];
 }
+
