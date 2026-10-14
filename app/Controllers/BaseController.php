@@ -32,28 +32,5 @@ abstract class BaseController extends Controller
     if ($locale) {
         service('request')->setLocale($locale);
     }
-
-    if (! session()->get('logged_in')) {
-            $cookie = $this->request->getCookie('remember');
-
-            if ($cookie && str_contains($cookie, ':')) {
-                [$id, $token] = explode(':', $cookie, 2);
-                $user = (new \App\Models\UserModel())->find((int) $id);
-
-                if ($user
-                    && (int) $user['active'] === 1
-                    && ! empty($user['remember_token'])
-                    && hash_equals($user['remember_token'], hash('sha256', $token))
-                ) {
-                    session()->set([
-                        'logged_in' => true,
-                        'user_id'   => $user['id'],
-                        'user_name' => $user['name'],
-                        'is_admin'  => (int) $user['is_admin'],
-                    ]);
-                }
-            }
-        }
-
 }
-    }
+}

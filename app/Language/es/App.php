@@ -15,4 +15,6 @@ return [
     'welcome_text'    => 'Organizador de tareas escolares. Planifica, da seguimiento y entrega tus tareas.',
     'login_success'   => 'Has iniciado sesión correctamente.',
     'logout_success'  => 'Has cerrado sesión correctamente.',
+    'login_required' => 'Inicia sesión para continuar.',
+    'forbidden'      => 'No tienes permiso para acceder a esa página.',
 ];

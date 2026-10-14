@@ -18,6 +18,11 @@ $loggedIn = $session->get('logged_in');
         .alert { padding: 10px 14px; border-radius: 4px; margin-bottom: 16px; }
         .alert-success { background: #d4edda; color: #155724; }
         .alert-error { background: #f8d7da; color: #721c24; }
+        .btn { display:inline-block; padding:8px 16px; border:0; border-radius:4px; color:#fff; text-decoration:none; cursor:pointer; font-size:14px; }
+        .btn-green { background:#28a745; }
+        .btn-red { background:#dc3545; }
+        .btn-blue { background:#0d6efd; }
+input[type=text], input[type=email], input[type=password], input[type=file] { width:100%; padding:8px; box-sizing:border-box; }
     </style>
 </head>
 <body>
