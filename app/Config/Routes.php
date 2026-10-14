@@ -38,3 +38,13 @@ $routes->group('users', ['filter' => 'admin'], static function ($routes) {
     $routes->post('(:num)/edit', 'Users::update/$1');
     $routes->post('(:num)/delete', 'Users::delete/$1');
 });
+
+$routes->group('tasks', ['filter' => 'auth'], static function ($routes) {
+    $routes->get('/', 'Tasks::index');
+    $routes->get('new', 'Tasks::create');
+    $routes->post('new', 'Tasks::store');
+    $routes->get('(:num)', 'Tasks::show/$1');
+    $routes->get('(:num)/edit', 'Tasks::edit/$1');
+    $routes->post('(:num)/edit', 'Tasks::update/$1');
+    $routes->post('(:num)/delete', 'Tasks::delete/$1');
+});
