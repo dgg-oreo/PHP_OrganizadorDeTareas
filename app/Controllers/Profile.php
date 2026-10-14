@@ -133,7 +133,7 @@ class Profile extends BaseController
 
         (new UserModel())->update($user['id'], [
             'password'       => password_hash($this->request->getPost('new_password'), PASSWORD_DEFAULT),
-            'remember_token' => null, // invalida los "recordarme" anteriores
+            'remember_token' => null,
         ]);
 
         return redirect()->to('profile')->with('success', lang('Profile.password_updated'));

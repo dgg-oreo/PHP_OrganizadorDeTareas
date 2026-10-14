@@ -28,3 +28,13 @@ $routes->group('profile', ['filter' => 'auth'], static function ($routes) {
     $routes->get('image/delete', 'Profile::deleteImage');
     $routes->post('image/delete', 'Profile::destroyImage');
 });
+
+$routes->group('users', ['filter' => 'admin'], static function ($routes) {
+    $routes->get('/', 'Users::index');
+    $routes->get('new', 'Users::create');
+    $routes->post('new', 'Users::store');
+    $routes->get('(:num)', 'Users::show/$1');
+    $routes->get('(:num)/edit', 'Users::edit/$1');
+    $routes->post('(:num)/edit', 'Users::update/$1');
+    $routes->post('(:num)/delete', 'Users::delete/$1');
+});
