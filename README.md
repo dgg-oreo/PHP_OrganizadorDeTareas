@@ -1,61 +1,162 @@
-# CodeIgniter 4 Framework
+# Sistema Organizador de Tareas Escolares
 
-## What is CodeIgniter?
+Aplicación web desarrollada con **CodeIgniter 4 (PHP)** para organizar las tareas académicas de un curso. Proyecto del curso de Algoritmos, Ingeniería en Sistemas de Información y Ciencias de la Computación, Universidad Mariano Gálvez de Guatemala.
 
-CodeIgniter is a PHP full-stack web framework that is light, fast, flexible and secure.
-More information can be found at the [official site](https://codeigniter.com).
+## Descripción
 
-This repository holds the distributable version of the framework.
-It has been built from the
-[development repository](https://github.com/codeigniter4/CodeIgniter4).
+La profesora y los alumnos acceden a un sistema centralizado donde pueden registrarse, iniciar sesión, administrar su perfil y gestionar tareas. Los administradores pueden además gestionar a todos los usuarios.
 
-More information about the plans for version 4 can be found in [CodeIgniter 4](https://forum.codeigniter.com/forumdisplay.php?fid=28) on the forums.
+## Entorno de desarrollo
 
-You can read the [user guide](https://codeigniter.com/user_guide/)
-corresponding to the latest version of the framework.
+- Sistema operativo: **Fedora Linux**
+- CodeIgniter **4.7.5**
+- MySQL **8.4**
+- Servidor de desarrollo: `php spark serve`
 
-## Important Change with index.php
+## Funcionalidades
 
-`index.php` is no longer in the root of the project! It has been moved inside the *public* folder,
-for better security and separation of components.
+- Pantalla de bienvenida con mensaje visible.
+- Cambio de idioma **English / Español** en toda la interfaz.
+- Registro de usuarios con validaciones.
+- Inicio y cierre de sesión con mensajes de confirmación y opción **Remember me**.
+- Perfil: ver datos, editar (pide la contraseña antes), cambiar contraseña, subir y eliminar imagen de perfil (con confirmación y avatar por defecto).
+- Gestión de usuarios (solo administradores): listado paginado Newer/Older, crear, ver, editar y eliminar.
+- Gestión de tareas: crear, ver, editar y eliminar, con búsqueda por palabra clave y paginación Newer/Older. Cada usuario ve solo sus tareas; el administrador ve todas.
 
-This means that you should configure your web server to "point" to your project's *public* folder, and
-not to the project root. A better practice would be to configure a virtual host to point there. A poor practice would be to point your web server to the project root and expect to enter *public/...*, as the rest of your logic and the
-framework are exposed.
+## Seguridad
 
-**Please** read the user guide for a better explanation of how CI4 works!
+- Contraseñas almacenadas con `password_hash()` (nunca en texto plano).
+- Filtros de acceso: `auth` (requiere sesión) y `admin` (requiere ser administrador).
+- Un administrador no puede eliminarse ni quitarse sus propios permisos.
+- Validación de tipo y tamaño (máx. 2 MB) en las imágenes subidas.
+- "Remember me" guarda en la base de datos solo el hash del token.
 
-## Repository Management
+## Requisitos
 
-We use GitHub issues, in our main repository, to track **BUGS** and to track approved **DEVELOPMENT** work packages.
-We use our [forum](http://forum.codeigniter.com) to provide SUPPORT and to discuss
-FEATURE REQUESTS.
+| Componente | Versión |
+|---|---|
+| PHP | 8.2 o superior (verifica con `php -v`) |
+| MySQL o MariaDB | 8.x / 10.x |
+| Git | cualquiera reciente |
 
-This repository is a "distribution" one, built by our release preparation script.
-Problems with it can be raised on our forum, or as issues in the main repository.
+Extensiones de PHP necesarias: `intl`, `mbstring`, `mysqlnd`, `xml`, `curl`, `zip`.
 
-## Contributing
+> No se necesita Composer: el repositorio ya incluye la carpeta `system/` del framework.
 
-We welcome contributions from the community.
+## Instalación
 
-Please read the [*Contributing to CodeIgniter*](https://github.com/codeigniter4/CodeIgniter4/blob/develop/CONTRIBUTING.md) section in the development repository.
 
-## Server Requirements
 
-PHP version 8.2 or higher is required, with the following extensions installed:
+### 1. Instalar dependencias
 
-- [intl](http://php.net/manual/en/intl.requirements.php)
-- [mbstring](http://php.net/manual/en/mbstring.installation.php)
+**Fedora** (entorno donde se desarrolló):
 
-> [!WARNING]
-> - The end of life date for PHP 7.4 was November 28, 2022.
-> - The end of life date for PHP 8.0 was November 26, 2023.
-> - The end of life date for PHP 8.1 was December 31, 2025.
-> - If you are still using below PHP 8.2, you should upgrade immediately.
-> - The end of life date for PHP 8.2 will be December 31, 2026.
+```bash
+sudo dnf install -y git php php-cli php-mysqlnd php-intl php-mbstring php-xml php-zip community-mysql-server
+sudo systemctl enable --now mysqld
+php -v
+```
 
-Additionally, make sure that the following extensions are enabled in your PHP:
+### 2. Clonar el repositorio
 
-- json (enabled by default - don't turn it off)
-- [mysqlnd](http://php.net/manual/en/mysqlnd.install.php) if you plan to use MySQL
-- [libcurl](http://php.net/manual/en/curl.requirements.php) if you plan to use the HTTP\CURLRequest library
+```bash
+git clone https://github.com/dgg-oreo/PHP_OrganizadorDeTareas.git
+cd PHP_OrganizadorDeTareas
+```
+
+### 3. Crear la base de datos
+
+```bash
+sudo mysql
+```
+
+```sql
+CREATE DATABASE tareas_db CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+CREATE USER 'tareas_user'@'localhost' IDENTIFIED BY 'Tareas2026';
+GRANT ALL PRIVILEGES ON tareas_db.* TO 'tareas_user'@'localhost';
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+### 4. Configurar el entorno
+
+```bash
+cp env .env
+nano .env
+```
+
+Deja estas líneas **sin `#` al inicio**:
+
+```ini
+CI_ENVIRONMENT = development
+
+app.baseURL = 'http://localhost:8080/'
+
+database.default.hostname = localhost
+database.default.database = tareas_db
+database.default.username = tareas_user
+database.default.password = Tareas2026
+database.default.DBDriver = MySQLi
+database.default.port = 3306
+```
+
+### 5. Crear las tablas y el usuario administrador
+
+```bash
+php spark migrate
+php spark db:seed UserSeeder
+```
+
+### 6. Dar permisos de escritura (si hace falta)
+
+```bash
+mkdir -p public/uploads/avatars
+chmod -R 775 writable public/uploads
+```
+
+### 7. Ejecutar la aplicación
+
+```bash
+php spark serve
+```
+
+Abre `http://localhost:8080` en el navegador.
+
+## Usuario de prueba
+
+| Rol | Correo | Contraseña |
+|---|---|---|
+| Administrador | `admin@example.com` | `Admin123*` |
+
+Los usuarios que se registran desde **Sign up** son usuarios normales (no administradores).
+
+## Rutas principales
+
+| Ruta | Descripción | Acceso |
+|---|---|---|
+| `/` | Bienvenida | Público |
+| `/lang/en`, `/lang/es` | Cambio de idioma | Público |
+| `/signup` | Registro | Público |
+| `/login`, `/logout` | Inicio y cierre de sesión | Público |
+| `/profile` | Perfil y sus acciones | Sesión iniciada |
+| `/tasks` | Gestión de tareas | Sesión iniciada |
+| `/users` | Gestión de usuarios | Administrador |
+
+## Estructura del proyecto
+
+```
+app/
+├── Config/          Rutas (Routes.php), filtros (Filters.php) y configuración
+├── Controllers/     Auth, Home, Lang, Profile, Tasks, Users
+├── Database/
+│   ├── Migrations/  Tablas users y tasks
+│   └── Seeds/       UserSeeder (administrador inicial)
+├── Filters/         InitFilter, AuthFilter, AdminFilter
+├── Language/        Textos en inglés (en) y español (es)
+├── Models/          UserModel, TaskModel
+└── Views/           Vistas y layout base
+public/              Único directorio accesible desde el navegador
+writable/            Logs, caché y sesiones
+```
+
+#
