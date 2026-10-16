@@ -1,6 +1,7 @@
 <?= $this->extend('layout') ?>
 
 <?= $this->section('content') ?>
+<div class="tarjeta">
     <h1><?= lang('Auth.signup_title') ?></h1>
 
     <?php if (! empty($errors)): ?>
@@ -17,27 +18,24 @@
         <?= csrf_field() ?>
 
         <p>
-            <label><?= lang('Auth.name') ?></label><br>
-            <input type="text" name="name" value="<?= esc(set_value('name')) ?>" required style="width:100%; padding:8px;">
+            <label><?= lang('Auth.name') ?></label>
+            <input type="text" name="name" value="<?= esc(set_value('name')) ?>" required>
         </p>
         <p>
-            <label><?= lang('Auth.email') ?></label><br>
-            <input type="email" name="email" value="<?= esc(set_value('email')) ?>" required style="width:100%; padding:8px;">
+            <label><?= lang('Auth.email') ?></label>
+            <input type="email" name="email" value="<?= esc(set_value('email')) ?>" required>
         </p>
         <p>
-            <label><?= lang('Auth.password') ?></label><br>
-            <input type="password" name="password" required style="width:100%; padding:8px;">
+            <label><?= lang('Auth.password') ?></label>
+            <input type="password" name="password" required>
         </p>
         <p>
-            <label><?= lang('Auth.repeat_password') ?></label><br>
-            <input type="password" name="password_confirm" required style="width:100%; padding:8px;">
+            <label><?= lang('Auth.repeat_password') ?></label>
+            <input type="password" name="password_confirm" required>
         </p>
 
-        <button type="submit" style="padding:8px 16px; background:#28a745; color:#fff; border:0; border-radius:4px;">
-            <?= lang('Auth.signup_button') ?>
-        </button>
-        <a href="<?= base_url('/') ?>" style="padding:8px 16px; background:#dc3545; color:#fff; border-radius:4px; text-decoration:none;">
-            <?= lang('Auth.cancel') ?>
-        </a>
+        <button type="submit" class="btn btn-green"><?= lang('Auth.signup_button') ?></button>
+        <a href="<?= base_url('/') ?>" class="btn btn-red"><?= lang('Auth.cancel') ?></a>
     </form>
+</div>
 <?= $this->endSection() ?>

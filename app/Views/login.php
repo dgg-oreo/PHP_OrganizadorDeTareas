@@ -1,6 +1,7 @@
 <?= $this->extend('layout') ?>
 
 <?= $this->section('content') ?>
+<div class="tarjeta">
     <h1><?= lang('Auth.login_title') ?></h1>
 
     <?php if (! empty($errors)): ?>
@@ -17,23 +18,22 @@
         <?= csrf_field() ?>
 
         <p>
-            <label><?= lang('Auth.email') ?></label><br>
-            <input type="email" name="email" value="<?= esc(set_value('email')) ?>" required style="width:100%; padding:8px;">
+            <label><?= lang('Auth.email') ?></label>
+            <input type="email" name="email" value="<?= esc(set_value('email')) ?>" required>
         </p>
         <p>
-            <label><?= lang('Auth.password') ?></label><br>
-            <input type="password" name="password" required style="width:100%; padding:8px;">
+            <label><?= lang('Auth.password') ?></label>
+            <input type="password" name="password" required>
         </p>
         <p>
-            <label>
+            <label class="check">
                 <input type="checkbox" name="remember" value="1">
                 <?= lang('Auth.remember_me') ?>
             </label>
         </p>
 
-        <button type="submit" style="padding:8px 16px; background:#28a745; color:#fff; border:0; border-radius:4px;">
-            <?= lang('Auth.login_button') ?>
-        </button>
-        <a href="<?= base_url('forgot-password') ?>"><?= lang('Auth.forgot_password') ?></a>
+        <button type="submit" class="btn btn-green"><?= lang('Auth.login_button') ?></button>
+        <a href="<?= base_url('forgot-password') ?>" style="margin-left:12px; font-size:14px;"><?= lang('Auth.forgot_password') ?></a>
     </form>
+</div>
 <?= $this->endSection() ?>

@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
     <h1><?= lang('Tasks.detail_title') ?></h1>
-    <p><a href="<?= base_url('tasks') ?>"><?= lang('Tasks.back') ?></a></p>
+    <a class="volver" href="<?= base_url('tasks') ?>"><?= lang('Tasks.back') ?></a>
 
     <p><strong><?= lang('Tasks.id') ?></strong><br><?= (int) $task['id'] ?></p>
     <p><strong><?= lang('Tasks.description') ?></strong><br><?= nl2br(esc($task['description'])) ?></p>

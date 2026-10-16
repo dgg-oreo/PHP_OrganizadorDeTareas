@@ -2,7 +2,7 @@
 
 <?= $this->section('content') ?>
     <h1><?= esc($title) ?></h1>
-    <p><a href="<?= base_url('tasks') ?>"><?= lang('Tasks.back') ?></a></p>
+    <a class="volver" href="<?= base_url('tasks') ?>"><?= lang('Tasks.back') ?></a>
 
     <?= $this->include('partials/errors') ?>
 
