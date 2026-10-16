@@ -1,5 +1,8 @@
 # Sistema Organizador de Tareas Escolares
 
+<img width="400" height="225" alt="Screencast From 2026-10-16 15-11-26" src="https://github.com/user-attachments/assets/a28e02e7-1704-4e9e-8a61-52c23d35c3ab" />
+
+
 Aplicación web desarrollada con **CodeIgniter 4 (PHP)** para organizar las tareas académicas de un curso. Proyecto del curso de Algoritmos, Ingeniería en Sistemas de Información y Ciencias de la Computación, Universidad Mariano Gálvez de Guatemala.
 
 ## Descripción
