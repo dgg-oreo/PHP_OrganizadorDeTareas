@@ -11,9 +11,7 @@ $loggedIn = $session->get('logged_in');
 
 
 <style>
-
 body { font-family: Arial, sans-serif; margin: 0; background: #F3F4F4; color: #2C2C2C; }
-
 
 nav { display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; background: #fff; border-bottom: 2px solid #612D53; padding: 14px 30px; font-family: "Didot", "Bodoni MT", "Playfair Display", Georgia, serif; }
 nav .izq { text-align: left; }
@@ -22,6 +20,11 @@ nav a { color: #2C2C2C; text-decoration: none; text-transform: uppercase; letter
 nav a:hover { color: #853953; }
 nav span { color: #612D53; font-style: italic; font-size: 15px; margin: 0 10px; }
 nav a.marca { font-size: 32px; font-weight: bold; letter-spacing: 8px; margin: 0; }
+
+nav a.boton { background: #853953; color: #fff; padding: 8px 18px; }
+nav a.boton:hover { background: #612D53; color: #fff; }
+nav a.boton-borde { border: 1px solid #853953; color: #853953; padding: 7px 18px; }
+nav a.boton-borde:hover { background: #853953; color: #fff; }
 
 main { max-width: 900px; margin: 30px auto; padding: 0 20px; }
 .alert { padding: 10px 14px; border-radius: 4px; margin-bottom: 16px; }
@@ -57,8 +60,8 @@ input[type=text], input[type=email], input[type=password], input[type=file] { wi
 <a href="<?= base_url('tasks') ?>"><?= lang('App.tasks') ?></a>
 <a href="<?= base_url('logout') ?>"><?= lang('App.logout') ?></a>
 <?php else: ?>
-<a href="<?= base_url('signup') ?>"><?= lang('App.signup') ?></a>
-<a href="<?= base_url('login') ?>"><?= lang('App.login') ?></a>
+<a class="boton" href="<?= base_url('signup') ?>"><?= lang('App.signup') ?></a>
+<a class="boton-borde" href="<?= base_url('login') ?>"><?= lang('App.login') ?></a>
 <?php endif; ?>
 </div>
 </nav>
