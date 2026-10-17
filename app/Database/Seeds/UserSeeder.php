@@ -11,9 +11,9 @@ class UserSeeder extends Seeder
         $now = date('Y-m-d H:i:s');
 
         $this->db->table('users')->insert([
-            'name'       => 'David',
-            'email'      => 'admin@example.com',
-            'password'   => password_hash('Admin123*', PASSWORD_DEFAULT),
+            'name'       => 'Diego',
+            'email'      => 'admin@gmail.com',
+            'password'   => password_hash('admin123', PASSWORD_DEFAULT),
             'active'     => 1,
             'is_admin'   => 1,
             'created_at' => $now,
