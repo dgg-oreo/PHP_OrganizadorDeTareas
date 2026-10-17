@@ -1,5 +1,8 @@
 # Sistema Organizador de Tareas Escolares
 
+<img width="400" height="225" alt="Screencast From 2026-10-16 15-11-26" src="https://github.com/user-attachments/assets/a28e02e7-1704-4e9e-8a61-52c23d35c3ab" />
+
+
 Aplicación web desarrollada con **CodeIgniter 4 (PHP)** para organizar las tareas académicas de un curso. Proyecto del curso de Algoritmos, Ingeniería en Sistemas de Información y Ciencias de la Computación, Universidad Mariano Gálvez de Guatemala.
 
 ## Descripción
@@ -80,10 +83,7 @@ EXIT;
 
 ### 4. Configurar el entorno
 
-```bash
-cp env .env
-nano .env
-```
+Crea un archivo .env en la raiz del proyecto
 
 Deja estas líneas **sin `#` al inicio**:
 
@@ -126,7 +126,7 @@ Abre `http://localhost:8080` en el navegador.
 
 | Rol | Correo | Contraseña |
 |---|---|---|
-| Administrador | `admin@example.com` | `Admin123*` |
+| Administrador | `admin@gmail.com` | `admin123` |
 
 Los usuarios que se registran desde **Sign up** son usuarios normales (no administradores).
 
