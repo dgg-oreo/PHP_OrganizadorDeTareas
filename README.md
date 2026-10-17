@@ -129,7 +129,7 @@ Abre `http://localhost:8080` en el navegador.
 
 | Rol | Correo | Contraseña |
 |---|---|---|
-| Administrador | `admin@example.com` | `Admin123*` |
+| Administrador | `admin@gmail.com` | `admin123` |
 
 Los usuarios que se registran desde **Sign up** son usuarios normales (no administradores).
 
