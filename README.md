@@ -83,10 +83,7 @@ EXIT;
 
 ### 4. Configurar el entorno
 
-```bash
-cp env .env
-nano .env
-```
+Crea un archivo .env en la raiz del proyecto
 
 Deja estas líneas **sin `#` al inicio**:
 
